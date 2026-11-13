@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.activity7.repositori.RepositoriSiswa
-import com.example.activity7.room.Siswa
+import com.example.roomsiswa.room.Siswa
 
 class EntryViewModel(
     private val repositoriSiswa: RepositoriSiswa,
@@ -33,3 +33,13 @@ class EntryViewModel(
                 isEntryValid = validasiInput(detailSiswa)
             )
     }
+
+    /* Fungsi untuk menyimpan data yang di-entry */
+    suspend fun saveSiswa() {
+        if (validasiInput()) {
+            repositoriSiswa.insertSiswa(
+                uiStateSiswa.detailSiswa.toSiswa()
+            )
+        }
+    }
+}
