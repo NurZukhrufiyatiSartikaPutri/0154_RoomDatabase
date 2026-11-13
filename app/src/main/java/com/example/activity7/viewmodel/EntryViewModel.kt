@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.activity7.repositori.RepositoriSiswa
-import com.example.roomsiswa.room.Siswa
+import com.example.activity7.room.Siswa
 
 class EntryViewModel(
     private val repositoriSiswa: RepositoriSiswa,
@@ -43,3 +43,11 @@ class EntryViewModel(
         }
     }
 }
+
+/**
+ * Mewakili Status UI untuk Siswa.
+ */
+data class UIStateSiswa(
+    val detailSiswa: DetailSiswa = DetailSiswa(),
+    val isEntryValid: Boolean = false
+)
