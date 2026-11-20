@@ -191,3 +191,16 @@ fun DetailDataSiswa(
                     )
                 )
             )
+
+            BarisDetailData(
+                labelResID = R.string.telpon,
+                itemDetail = siswa.telpon,
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(
+                        id = R.dimen.padding_medium
+                    )
+                )
+            )
+        }
+    }
+}
