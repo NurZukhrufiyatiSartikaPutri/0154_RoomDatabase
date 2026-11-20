@@ -8,7 +8,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -25,8 +24,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.activity7.R
-import com.example.activity7.uicontroller.DestinasiEntry
 import com.example.activity7.uicontroller.DestinasiNavigasi
+import com.example.activity7.uicontroller.DestinasiEntry
 import com.example.activity7.uicontroller.SiswaTopAppBar
 import com.example.activity7.viewmodel.DetailSiswa
 import com.example.activity7.viewmodel.EntryViewModel
@@ -34,12 +33,13 @@ import com.example.activity7.viewmodel.PenyediaViewModel
 import com.example.activity7.viewmodel.UIStateSiswa
 import kotlinx.coroutines.launch
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EntrySiswaScreen(
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: EntryViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    viewModel: EntryViewModel = viewModel(factory = PenyediaViewModel.Factory),
 ) {
     val coroutineScope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -48,9 +48,10 @@ fun EntrySiswaScreen(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             SiswaTopAppBar(
-                title = stringResource(DestinasiEntry.titleRes),
+                tittle = stringResource(DestinasiEntry.titleRes),
                 canNavigateBack = true,
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
+                navigateUp = navigateBack
             )
         }
     ) { innerPadding ->
@@ -79,14 +80,27 @@ fun EntrySiswaBody(
     modifier: Modifier = Modifier
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_large)),
-        modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+        verticalArrangement = Arrangement.spacedBy(
+            dimensionResource(id = R.dimen.padding_large)
+        ),
+        modifier = modifier.padding(
+            dimensionResource(id = R.dimen.padding_medium)
+        )
     ) {
         FormInputSiswa(
             detailSiswa = uiStateSiswa.detailSiswa,
             onValueChange = onSiswaValueChange,
             modifier = Modifier.fillMaxWidth()
         )
+
+        Button(
+            onClick = onSaveClick,
+            enabled = uiStateSiswa.isEntryValid,
+            shape = MaterialTheme.shapes.small,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(stringResource(R.string.btn_submit))
+        }
     }
 }
 
@@ -100,11 +114,15 @@ fun FormInputSiswa(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
+        verticalArrangement = Arrangement.spacedBy(
+            dimensionResource(id = R.dimen.padding_medium)
+        )
     ) {
         OutlinedTextField(
             value = detailSiswa.nama,
-            onValueChange = { onValueChange(detailSiswa.copy(nama = it)) },
+            onValueChange = {
+                onValueChange(detailSiswa.copy(nama = it))
+            },
             label = { Text(stringResource(R.string.nama)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
@@ -113,7 +131,9 @@ fun FormInputSiswa(
 
         OutlinedTextField(
             value = detailSiswa.alamat,
-            onValueChange = { onValueChange(detailSiswa.copy(alamat = it)) },
+            onValueChange = {
+                onValueChange(detailSiswa.copy(alamat = it))
+            },
             label = { Text(stringResource(R.string.alamat)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
@@ -122,9 +142,13 @@ fun FormInputSiswa(
 
         OutlinedTextField(
             value = detailSiswa.telpon,
-            onValueChange = { onValueChange(detailSiswa.copy(telpon = it)) },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            label = { Text(text = stringResource(R.string.telpon)) },
+            onValueChange = {
+                onValueChange(detailSiswa.copy(telpon = it))
+            },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number
+            ),
+            label = { Text(stringResource(R.string.telpon)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
@@ -133,13 +157,17 @@ fun FormInputSiswa(
         if (enabled) {
             Text(
                 text = stringResource(R.string.required_field),
-                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.padding_medium))
+                modifier = Modifier.padding(
+                    start = dimensionResource(id = R.dimen.padding_medium)
+                )
             )
         }
 
         HorizontalDivider(
-            thickness = dimensionResource(R.dimen.padding_small),
-            modifier = Modifier.padding(bottom = dimensionResource(R.dimen.padding_medium))
+            modifier = Modifier.padding(
+                bottom = dimensionResource(R.dimen.padding_medium)
+            ),
+            thickness = dimensionResource(id = R.dimen.padding_small)
         )
     }
 }
