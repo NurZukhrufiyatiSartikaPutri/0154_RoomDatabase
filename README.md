@@ -15,63 +15,6 @@ Project ini menerapkan arsitektur **MVVM (Model-View-ViewModel)**, menggunakan *
 - Navigation Compose
 - Android Studio
 
-## Struktur Project
-
-```text
-com.example.roomdb/
-│
-├── repository/
-│   ├── ContainerApp.kt
-│   └── RepositoriSiswa.kt
-│
-├── room/
-│   ├── DatabaseSiswa
-│   ├── Siswa
-│   └── SiswaDao
-│
-├── ui.theme/
-│
-├── uicontroller/
-│   ├── DestinasiEntry
-│   ├── DestinasiHome
-│   ├── DestinasiNavigasi
-│   └── PetaNavigasi.kt
-│
-├── view/
-│   ├── HalamanEntry.kt
-│   └── HalamanHome.kt
-│
-├── viewmodel/
-│   ├── EntryViewModel.kt
-│   ├── HomeViewModel
-│   └── PenyediaViewModel.kt
-│
-├── AplikasiSiswa
-└── MainActivity
-```
-
-### Penjelasan Struktur Project
-
-| Folder/File | Fungsi |
-|---|---|
-| `repository` | Mengatur akses dan pengelolaan data melalui repository. |
-| `room` | Menyimpan komponen database, Entity, dan DAO. |
-| `ui.theme` | Mengatur tema, warna, dan tampilan aplikasi. |
-| `uicontroller` | Mengatur tujuan dan navigasi antarhalaman. |
-| `view` | Menampilkan antarmuka aplikasi. |
-| `viewmodel` | Mengelola state dan logika aplikasi. |
-| `AplikasiSiswa` | Menginisialisasi kebutuhan aplikasi. |
-| `MainActivity` | Activity utama sebagai titik awal aplikasi. |
-
-### Dokumentasi Struktur Project
-
-<img width="263" height="515" alt="image" src="https://github.com/user-attachments/assets/ddbecb26-be8d-4a32-8300-bc10d5ad4870" />
-
-
-<!-- Tempat screenshot struktur project -->
-
-![Struktur Project](screenshots/05-struktur-project.png)
-
 ## Dokumentasi Hasil Aplikasi
 
 ### 1. Tampilan Awal (Data Siswa)
@@ -107,6 +50,20 @@ Pengguna mengisi formulir dengan nama, alamat, dan nomor telepon siswa. Setelah 
 
 Setelah tombol Submit ditekan, aplikasi kembali ke halaman utama dan menampilkan data siswa yang berhasil disimpan dalam bentuk kartu informasi berisi nama, alamat, dan nomor telepon.
 
+### 5. Edit Data Siswa
+
+<img width="397" height="846" alt="image" src="https://github.com/user-attachments/assets/49a00d51-7f72-4868-9122-8c78aedf3b3f" />
+
+
+Menampilkan halaman Edit Siswa yang digunakan untuk memperbarui data siswa yang sudah tersimpan. Formulir menampilkan data sebelumnya, meliputi Nama Siswa, Alamat Siswa, dan Telpon Siswa. Pengguna dapat mengubah informasi yang diperlukan, kemudian menekan tombol Submit untuk menyimpan perubahan data.
+
+### 6. Hapus Data Siswa
+
+<img width="394" height="850" alt="image" src="https://github.com/user-attachments/assets/3ff6c2c0-6ada-4cdd-97f3-861234f2de33" />
+
+
+Menampilkan halaman Detail Siswa dengan dialog konfirmasi sebelum melakukan penghapusan data. Aplikasi menampilkan pesan "Apakah anda yakin menghapus ini?" dengan dua pilihan, yaitu Tidak untuk membatalkan proses penghapusan dan Ya untuk melanjutkan penghapusan data siswa. Fitur ini membantu mencegah penghapusan data secara tidak sengaja.
+
 ## Kesimpulan
 
-Berdasarkan hasil pengujian, aplikasi Data Siswa berhasil menjalankan proses penambahan dan penampilan data siswa. Validasi formulir juga berfungsi untuk memastikan seluruh kolom wajib diisi sebelum data disimpan. Penggunaan Room Database membantu menyimpan data secara lokal, sedangkan arsitektur MVVM membantu memisahkan tampilan, pengelolaan state, dan pengelolaan data aplikasi.
+Berdasarkan hasil pengujian, aplikasi Data Siswa berhasil menjalankan proses penambahan, penampilan, pengubahan, dan penghapusan data siswa. Validasi formulir juga berfungsi untuk memastikan seluruh kolom wajib diisi sebelum data disimpan. Penggunaan Room Database membantu menyimpan data secara lokal, sedangkan arsitektur MVVM membantu memisahkan tampilan, pengelolaan state, dan pengelolaan data aplikasi.
