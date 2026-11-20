@@ -223,5 +223,25 @@ private fun DeleteConfirmationDialog(
     onDeleteConfirm: () -> Unit,
     onDeleteCancel: () -> Unit,
     modifier: Modifier = Modifier
-)
+) {
+    AlertDialog(
+        onDismissRequest = { /* Do nothing */ },
+        title = {
+            Text(stringResource(id = R.string.attention))
+        },
+        text = {
+            Text(stringResource(id = R.string.tanya))
+        },
+        modifier = modifier,
+        dismissButton = {
+            TextButton(onClick = onDeleteCancel) {
+                Text(stringResource(id = R.string.no))
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDeleteConfirm) {
+                Text(stringResource(id = R.string.yes))
+            }
+        }
+    )
 }
