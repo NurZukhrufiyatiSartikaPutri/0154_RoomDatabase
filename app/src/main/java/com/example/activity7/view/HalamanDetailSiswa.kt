@@ -114,4 +114,12 @@ private fun BodyDetailDataSiswa(
             dimensionResource(id = R.dimen.padding_medium)
         )
     ) {
+        var deleteConfirmationRequired by rememberSaveable {
+            mutableStateOf(false)
+        }
+
+        DetailDataSiswa(
+            siswa = detailSiswaUiState.detailSiswa.toSiswa(),
+            modifier = Modifier.fillMaxWidth()
+        )
 }
