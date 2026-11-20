@@ -1,0 +1,9 @@
+package com.example.activity7.uicontroller
+
+import com.example.activity7.R
+
+object DestinasiEditSiswa : DestinasiNavigasi {
+    override val route = "item_edit"
+    override val titleRes = R.string.edit_siswa
+
+}
