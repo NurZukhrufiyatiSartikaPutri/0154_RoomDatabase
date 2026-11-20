@@ -73,4 +73,11 @@ fun DetailSiswaScreen(
                 modifier = Modifier.padding(
                     dimensionResource(id = R.dimen.padding_large)
                 )
-            ) 
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Edit,
+                    contentDescription = stringResource(R.string.edit_siswa),
+                )
+            }
+        },
+}
